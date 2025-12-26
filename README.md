@@ -60,3 +60,36 @@ Feel free to fork this project and submit pull requests. Contributions are welco
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## ✅ Verified Quickstart
+
+The following commands were used to validate the repo structure and build the frontend bundle. The backend requires the .NET 6 SDK to run locally.
+
+```bash
+cd frontend
+npm run build
+```
+
+To run the backend API after installing the .NET 6 SDK:
+
+```bash
+./scripts/run_backend.sh
+```
+
+To run the frontend dev server:
+
+```bash
+./scripts/run_frontend.sh
+```
+
+To run the automated smoke test (requires .NET 6 SDK and curl):
+
+```bash
+./scripts/smoke_test.sh
+```
+
+## Troubleshooting
+
+- **`dotnet: command not found`**: Install the .NET 6 SDK and ensure `dotnet` is on your `PATH`.
+- **Backend not responding on http://localhost:5055**: The smoke test starts the API on port 5055; ensure the port is free.
+- **Missing `node_modules`**: Run `npm install` in the `frontend` directory or use `./scripts/run_frontend.sh` which installs dependencies automatically if needed.
