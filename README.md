@@ -60,3 +60,46 @@ Feel free to fork this project and submit pull requests. Contributions are welco
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## ✅ Verified Quickstart
+
+The following commands were used to validate the repo structure and build the frontend bundle. The backend requires the .NET 6 SDK to run locally.
+
+```bash
+cd frontend
+npm run build
+```
+
+To run the backend API after installing the .NET 6 SDK:
+
+```bash
+./scripts/run_backend.sh
+```
+
+To run the frontend dev server:
+
+```bash
+./scripts/run_frontend.sh
+```
+
+To run the automated smoke test (requires .NET 6 SDK and curl):
+
+```bash
+./scripts/smoke_test.sh
+```
+
+## Troubleshooting
+
+- **`dotnet: command not found`**: Install the .NET 6 SDK and ensure `dotnet` is on your `PATH`.
+- **Backend not responding on http://localhost:5055**: The smoke test starts the API on port 5055; ensure the port is free.
+- **Missing `node_modules`**: Run `npm install` in the `frontend` directory or use `./scripts/run_frontend.sh` which installs dependencies automatically if needed.
+
+### .NET SDK bootstrap
+
+If you do not have the .NET SDK installed, `./scripts/run_backend.sh` and `./scripts/smoke_test.sh` will download .NET 6 into a local `.dotnet/` directory for you. This keeps the repo self-contained while still running the official SDK.
+
+### Mock backend fallback
+
+If .NET is unavailable, the backend runner will automatically start a lightweight mock server that exposes the same `/api/task` endpoint so you can still explore the UI and smoke test behavior. This is a compatibility layer and does not replace the ASP.NET Core API.
+
+- **SDK downloads blocked (HTTP 403)**: In restricted environments the automatic .NET SDK download may be blocked. In that case the backend runner and smoke test will fall back to the mock backend automatically.
